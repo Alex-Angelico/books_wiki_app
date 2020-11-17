@@ -3,18 +3,22 @@
 
 <head>
   <title>Your Books.Wiki Search Results</title>
+  <link href="../styles/reset.css" type="text/css" rel="stylesheet" />
+  <link href="../styles/base.css" type="text/css" rel="stylesheet" />
 </head>
 
 <body>
   <main>
-    <% for (let i = 0; i < searchResults.length; i++) { %>
-    <% <div> %>
-    <%= <img href="book.thumbnail"></img> %>
-    <%= <h3> book.title </h3>%>
-    <%= <h3> book.authors </h3>%>
-    <%= <h3> book.description </h3> %>
-    <% </div> %>
-    <% } %>
+    <ul>
+      <% searchResults.forEach(function(book) { %>
+      <li>
+        <img src="<%= book.thumbnail %>"></img>
+        <h3><%= book.title %></h3>
+        <strong>Authors: <%= book.authors %></strong>
+        <p>Description: <%= book.description %></p>
+      </li>
+      <% }); %>
+    </ul>
   </main>
 </body>
 
