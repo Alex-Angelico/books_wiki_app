@@ -53,7 +53,7 @@ Start time: _____
 
 Finish time: _____
 
-Actual time needed to complete: _____
+Actual time needed to complete: 1 hour
 
 #### Feature 2
 
@@ -65,7 +65,7 @@ Start time: _____
 
 Finish time: _____
 
-Actual time needed to complete: _____
+Actual time needed to complete: .5 hour
 
 #### Feature 3
 
@@ -75,21 +75,21 @@ Estimate of time needed to complete: 1.5 hours
 
 Start time: 1935
 
-Finish time: _____
+Finish time: 0050
 
-Actual time needed to complete: _____
+Actual time needed to complete: 5.25 hours
 
 #### Feature 4
 
-Number and name of feature: ________________________________
+Number and name of feature: Error view
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: .5 hour
 
-Start time: _____
+Start time: 0055
 
-Finish time: _____
+Finish time: 0140
 
-Actual time needed to complete: _____
+Actual time needed to complete: .75 hour
 
 #### Feature 5
 

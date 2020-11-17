@@ -19,7 +19,6 @@ app.set('view engine', 'ejs');
 app.get('/hello', renderHomePage);
 app.get('/searches/new', showForm);
 app.post('/searches', createSearch);
-// app.get('/searches/show');
 
 function renderHomePage(req, res) {
   res.render('pages/index', { 'testObject': 'Hello World' });
@@ -41,7 +40,10 @@ function createSearch(req, res) {
     .then(results => {
       res.render('pages/searches/show', { searchResults: results });
     })
-    .catch(err => console.error('ERROR MESSAGE: ', err));
+    .catch(err => {
+      console.error(err);
+      res.render('pages/error');
+    })
 }
 
 function Book(googleBook) {
