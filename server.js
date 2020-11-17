@@ -4,7 +4,10 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const suepragent = require('superagent');
+const dotenv = require('dotenv');
 const PORT = process.env.PORT || 3333;
+
+dotenv.config();
 
 app.use(express.static('./public'));
 app.use(cors());
@@ -12,12 +15,17 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 
-app.get('/', renderHomePage);
-// app.get('/searches/new', showForm);
+// app.get('/', renderHomePage);
+app.get('/hello', renderHomePage);
+app.get('/searches/new', showForm);
 // app.post('/searches', createSearch);
 
 function renderHomePage(req, res) {
   res.render('pages/index', { 'testObject': 'Hello World' });
+}
+
+function showForm(req, res) {
+  res.render('pages/searches/new.ejs');
 }
 
 // function createSearch(req, res) {
