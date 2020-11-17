@@ -135,10 +135,6 @@ li img {
   border: 5px solid white;
 }
 
-li h3 {
-  /* margin: 10px; */
-}
-
 li strong{
   display: inline-block;
   margin: 10px;
@@ -155,7 +151,6 @@ li p {
 }
 
 .resultsfooter {
-  /* position: fixed; */
   background-color: black;
   height: 50px;
   display: flex;

@@ -16,12 +16,12 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 // app.get('/', renderHomePage);
-app.get('/hello', renderHomePage);
+app.get('/', renderHomePage);
 app.get('/searches/new', showForm);
 app.post('/searches', createSearch);
 
 function renderHomePage(req, res) {
-  res.render('pages/index', { 'testObject': 'Hello World' });
+  res.render('pages/index', { 'testObject': 'Hello there! Welcome to your bookshelves.' });
 }
 
 function showForm(req, res) {

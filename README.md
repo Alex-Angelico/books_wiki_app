@@ -3,6 +3,7 @@
 **Authors**: Alex Angelico, Jeff Ostlund
 
 ## Overview
+
 App which allows users to browse books from Google's Books API, and add them to their profile as desired.
 
 ## Getting Started
@@ -109,8 +110,8 @@ Number and name of feature: Homepage
 
 Estimate of time needed to complete: .5 hour
 
-Start time: _____
+Start time: 0325
 
-Finish time: _____
+Finish time: 0335
 
-Actual time needed to complete: _____
+Actual time needed to complete: 0.167 hour
