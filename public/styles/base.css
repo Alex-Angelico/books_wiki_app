@@ -10,6 +10,22 @@ h1 {
   color: yellow;
 }
 
+img {
+  border: 2px solid gray;
+}
+
+h3 {
+  color: white;
+}
+
+strong {
+  color: white;
+}
+
+li {
+  list-style-type: none;
+}
+
 p {
   color: white;
 }
