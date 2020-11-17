@@ -146,7 +146,7 @@ li p {
   height: 100px;
   text-align: left;
   white-space: normal;
-  overflow: scroll;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
@@ -157,11 +157,4 @@ li p {
   justify-content: center;
   align-items: center;
   align-content: space-between;
-}
-
-footer span {
-  border-radius: 100%;
-  width: 20px;
-  height: 20px;
-  background-color: darkslategray;
 }
