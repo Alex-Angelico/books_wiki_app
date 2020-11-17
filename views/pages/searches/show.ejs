@@ -5,10 +5,18 @@
   <title>Your Books.Wiki Search Results</title>
   <link href="../styles/reset.css" type="text/css" rel="stylesheet" />
   <link href="../styles/base.css" type="text/css" rel="stylesheet" />
+  <link href="../styles/layout.css" type="text/css" rel="stylesheet" />
+  <link href="../styles/module.css" type="text/css" rel="stylesheet" />
 </head>
 
 <body>
-  <main>
+  <header>
+    <h1>Best Books!</h1>
+  </header>
+  <div class="topdiv">
+    <h2>Search Results</h2>
+  </div>
+  <main class="resultsbox">
     <ul>
       <% searchResults.forEach(function(book) { %>
       <li>
@@ -20,6 +28,7 @@
       <% }); %>
     </ul>
   </main>
+  <footer class="resultsfooter"><span></span><span></span><span></span><span></span></footer>
 </body>
 
 </html>

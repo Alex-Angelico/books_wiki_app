@@ -40,8 +40,8 @@ function createSearch(req, res) {
     .then(results => {
       res.render('pages/searches/show', { searchResults: results });
     })
-    .catch(err => {
-      console.error(err);
+    .catch(error => {
+      console.error(error);
       res.render('pages/error');
     })
 }

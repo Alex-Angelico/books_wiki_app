@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+  <title>Book Search Form</title>
+  <link href="../styles/reset.css" type="text/css" rel="stylesheet" />
+  <link href="../styles/base.css" type="text/css" rel="stylesheet" />
+  <link href="../styles/layout.css" type="text/css" rel="stylesheet" />
+  <link href="../styles/module.css" type="text/css" rel="stylesheet" />
+</head>
+
 <body>
-  <h1>Search by for books by title or author</h1>
-  <form action="/searches" method="post">
-    <input type="text" name="search" placeholder="Enter title or author" required>
-    <fieldset>
-      <label for="title">Title</label>
-      <input type="radio" name="search" value="title" required>
-    </fieldset>
-    <fieldset>
-      <label for="author">Author</label>
-      <input type="radio" name="search" value="author" required>
-    </fieldset>
-    <button type="submit">Search Google Books</button>
-  </form>
+  <header>
+    <h1>Best Books!</h1>
+  </header>
+  <div class="topdiv">
+    <h2>Search by Title or Author</h2>
+  </div>
+  <main class="searchmenu">
+    <form action="/searches" method="post">
+      <input class="textinput" type="text" name="search" placeholder="Enter a title or author" required>
+      <fieldset class="radiobox">
+        <label for="title">Title</label>
+        <input type="radio" name="search" value="title" required>
+      </fieldset>
+      <fieldset class="radiobox">
+        <label for="author">Author</label>
+        <input type="radio" name="search" value="author" required>
+      </fieldset>
+      <button class="searchbutton" type="submit">Search the Google Books API</button>
+    </form>
+  </main>
+  <footer><span></span><span></span><span></span><span></span></footer>
 </body>
 
 </html>
