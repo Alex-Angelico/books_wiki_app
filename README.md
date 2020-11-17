@@ -49,9 +49,9 @@ Number and name of feature: Initialization
 
 Estimate of time needed to complete: 1 hour
 
-Start time: _____
+Start time: 1800
 
-Finish time: _____
+Finish time: 1900
 
 Actual time needed to complete: 1 hour
 
@@ -61,9 +61,9 @@ Number and name of feature: Search Form
 
 Estimate of time needed to complete: .5 hour
 
-Start time: _____
+Start time: 1900
 
-Finish time: _____
+Finish time: 1930
 
 Actual time needed to complete: .5 hour
 
@@ -93,21 +93,21 @@ Actual time needed to complete: .75 hour
 
 #### Feature 5
 
-Number and name of feature: ________________________________
+Number and name of feature: Responsive UI
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 1 hour
 
-Start time: _____
+Start time: 0145
 
-Finish time: _____
+Finish time: 0315
 
-Actual time needed to complete: _____
+Actual time needed to complete: 1.5 hours
 
 #### Feature 6
 
-Number and name of feature: ________________________________
+Number and name of feature: Homepage
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: .5 hour
 
 Start time: _____
 
