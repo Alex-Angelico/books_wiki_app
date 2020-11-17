@@ -69,11 +69,11 @@ Actual time needed to complete: _____
 
 #### Feature 3
 
-Number and name of feature: ________________________________
+Number and name of feature: Browse search results
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 1.5 hours
 
-Start time: _____
+Start time: 1935
 
 Finish time: _____
 

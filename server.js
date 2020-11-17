@@ -3,7 +3,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const suepragent = require('superagent');
+const superagent = require('superagent');
 const dotenv = require('dotenv');
 const PORT = process.env.PORT || 3333;
 
@@ -18,31 +18,40 @@ app.set('view engine', 'ejs');
 // app.get('/', renderHomePage);
 app.get('/hello', renderHomePage);
 app.get('/searches/new', showForm);
-// app.post('/searches', createSearch);
+app.post('/searches', createSearch);
+// app.get('/searches/show');
 
 function renderHomePage(req, res) {
   res.render('pages/index', { 'testObject': 'Hello World' });
 }
 
 function showForm(req, res) {
-  res.render('pages/searches/new.ejs');
+  res.render('pages/searches/new');
 }
 
-// function createSearch(req, res) {
-//   let url = 'httpes://www.googleapis.com/books/v1/volumes?q=';
-//   if (req.body.search[1] === 'title') { url += `+intitle:${req.body.search[0]}`; }
-//   if (req.body.search[1] === 'author') { url += `+inauthor:${req.body.search[0]}`; }
+function createSearch(req, res) {
+  let url = 'https://www.googleapis.com/books/v1/volumes?q=';
+  if (req.body.search[1] === 'title') { url += `+intitle:${req.body.search[0]}`; }
+  if (req.body.search[1] === 'author') { url += `+inauthor:${req.body.search[0]}`; }
 
-//   superagent.get(url)
-//     .then(data => {
-//       Return data.body.items.map(book => { return new Book(book.volumeInfo); });
-//       res.render('pages/show', data.text)
-//     })
-//     .then(results => {
-//       res.render('pages/show', { searchResults: JSON.stringify(resutls) });
-//     })
-//     .catch(err => console.error(err));
-// }
+  superagent.get(url)
+    .then(data => {
+      return data.body.items.map(book => { return new Book(book.volumeInfo); });
+    })
+    .then(results => {
+      console.log(results);
+      res.render('pages/searches/show', { searchResults: JSON.stringify(results) });
+    })
+    .catch(err => console.error('ERROR MESSAGE: ', err));
+}
+
+function Book(googleBook) {
+  this.thumbnail = googleBook.imageLinks.thumbnail.replace('http:', 'https:') || 'https://i.imgur.com/J5LVHEL.jpg';
+  // if (this.thumbnail.indexOf('https:') === -1) { this.thumbnail = this.thumbnail.replace('http:', 'https:'); }
+  this.title = googleBook.title || 'No title found';
+  this.authors = googleBook.authors || 'No author found';
+  this.description = googleBook.description || 'No description found';
+}
 
 app.listen(PORT, () => {
   console.log(`server up: ${PORT}`);
