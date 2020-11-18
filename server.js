@@ -1,13 +1,17 @@
 'use strict'
 
 const express = require('express');
+const pg = require('pg');
 const app = express();
 const cors = require('cors');
 const superagent = require('superagent');
-const dotenv = require('dotenv');
+require('dotenv').config();
 const PORT = process.env.PORT || 3333;
+console.log(process.env.DATABASE_URL);
+const client = new pg.Client(process.env.DATABASE_URL);
+client.on('error', console.error);
+client.connect();
 
-dotenv.config();
 
 app.use(express.static('./public'));
 app.use(cors());
@@ -16,12 +20,35 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 app.get('/', renderHomePage);
+// app.get('/', renderBookCount);
 app.get('/searches/new', showForm);
 app.post('/searches', createSearch);
+app.post('/shelving', shelveBooks);
 
-function renderHomePage(req, res) {
-  res.render('pages/index', { 'testObject': 'Hello there! Welcome to your bookshelves.' });
+
+function renderBookCount(SQL) {
+  return client.query(SQL)
+  .then(count => {
+    console.log(count.rowCount)
+    res.render('pages/index', { booknumber: count.rowCount})
+  })
+  .catch(err => console.error(err));
+
 }
+function renderHomePage(req, res) {
+  let SQL = 'SELECT * FROM books;';
+  let bookCount = 'SELECT LAST_VALUE (id) OVER (RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) FROM books;';
+  renderBookCount(bookCount);
+  
+  return client.query(SQL)
+    .then(results => res.render('pages/index', { bookshelf: results.rows }))
+    .catch(err => console.error(err));
+}
+
+
+  
+
+
 
 function showForm(req, res) {
   res.render('pages/searches/new');
@@ -34,7 +61,6 @@ function createSearch(req, res) {
 
   superagent.get(url)
     .then(data => {
-      console.log(data.body.items.volumeInfo);
       return data.body.items.map(book => { return new Book(book.volumeInfo); });
     })
     .then(results => {
@@ -48,18 +74,22 @@ function createSearch(req, res) {
 
 function Book(googleBook) {
   this.thumbnail = googleBook.imageLinks.thumbnail.replace('http:', 'https:') || 'https://i.imgur.com/J5LVHEL.jpg';
-  // if (this.thumbnail.indexOf('https:') === -1) { this.thumbnail = this.thumbnail.replace('http:', 'https:'); }
   this.title = googleBook.title || 'No title found';
   this.authors = googleBook.authors || 'No author found';
   this.description = googleBook.description || 'No description found';
-  this.isbn = googleBook.isbn || 'No ISBN found';
-  // console.log(typeof this.thumbnail);
-  // console.log(typeof this.title);
-  // console.log(typeof this.authors);
-  // console.log(typeof this.description);
-  // console.log(typeof this.isbn);
+  this.identifier = googleBook.industryIdentifiers[0].identifier || 'No ISBN found';
 }
 
-app.listen(PORT, () => {
-  console.log(`server up: ${PORT}`);
-});
+function shelveBooks(req, res) {
+  const chosenBook = JSON.parse(req.body.book);
+  let { thumbnail, title, authors, description, identifier } = chosenBook;
+  let SQL = 'INSERT INTO books (thumbnail, title, authors, description, identifier) VALUES ($1, $2, $3, $4, $5);';
+  let values = [thumbnail, title, authors, description, identifier];
+  return client.query(SQL, values)
+    .then(res.redirect('/'))
+    .catch(error => console.error(error));
+}    
+
+  app.listen(PORT, () => {
+    console.log(`server up: ${PORT}`);
+  });

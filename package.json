@@ -1,7 +1,7 @@
 {
   "name": "module-03-books-wiki-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "**Authors**: Alex Angelico, Jeff Ostlund",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,6 +15,15 @@
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "pg": "^8.5.1",
     "superagent": "^6.1.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex-Angelico/books_wiki_app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Alex-Angelico/books_wiki_app/issues"
+  },
+  "homepage": "https://github.com/Alex-Angelico/books_wiki_app#readme"
 }

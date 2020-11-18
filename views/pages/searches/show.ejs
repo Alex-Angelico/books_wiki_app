@@ -24,7 +24,10 @@
         <h3><%= book.title %></h3>
         <strong>Authors: <%= book.authors %></strong>
         <p>Description: <%= book.description %></p>
-        <p>ISBN: <%= book.isbn %></p>
+        <form action="/shelving" method="POST">
+          <input type="hidden" name="book" value="<%= JSON.stringify(book) %>"></input>
+          <button class="addbutton" type="submit">Select This Book</button>
+        </form>
       </li>
       <% }); %>
     </ul>

@@ -14,10 +14,20 @@
     <h1>Books.Wiki</h1>
   </header>
   <div class="topdiv">
-    <h2><%= testObject %></h2>
+    <h2>Welcome to Your Bookshelf</h2>
   </div>
   <main>
-
+    <ul>
+      <% bookshelf.forEach(function(book) { %>
+      <li>
+        <img src="<%= book.thumbnail %>"></img>
+        <h3><%= book.title %></h3>
+        <strong>Authors: <%= book.authors %></strong>
+        <p>Description: <%= book.description %></p>
+        <p>ISBN: <%= book.identifier %></p>
+      </li>
+      <% }); %>
+    </ul>
   </main>
 </body>
 
