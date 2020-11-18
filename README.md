@@ -1,6 +1,6 @@
 # Books.Wiki
 
-**Authors**: Alex Angelico, Jeff Ostlund
+**Authors**: Alex Angelico, Jordan Ostlund
 
 ## Overview
 
@@ -14,6 +14,10 @@ App which allows users to browse books from Google's Books API, and add them to 
 4. Update repository with backend
 5. Connect repository to Heroku
 6. Continue to work on backeng and frontend in VSCode
+
+## Collaborators
+
+Amelia Valdes
 
 ## Architecture
 
