@@ -24,8 +24,9 @@
         <img src="<%= book.thumbnail %>"></img>
         <h3><%= book.title %></h3>
         <strong>Authors: <%= book.authors %></strong>
-        <p>Description: <%= book.description %></p>
-        <p>ISBN: <%= book.identifier %></p>
+        <button class="addbutton" type="submit">
+          <a href="pages/books/<%= book.id %>">View Details</a>
+        </button>
       </li>
       <% }); %>
     </ul>
