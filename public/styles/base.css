@@ -70,7 +70,7 @@ fieldset {
   height: 18px;
 }
 
-.searchbutton {
+.actionbutton {
   width: 45vw;
   height: 60px;
   background-color: black;
@@ -78,6 +78,17 @@ fieldset {
   font-size: large;
   border: none;
   border-radius: 4px;
+}
+
+.addbutton {
+  width: 35vw;
+  height: 60px;
+  background-color: black;
+  color: white;
+  font-size: large;
+  border: none;
+  border-radius: 4px;
+  margin-top: 10px;
 }
 
 h3 {
@@ -143,7 +154,7 @@ li strong{
 li p {
   margin: auto;
   width: 35vw;
-  height: 100px;
+  height: 30px;
   text-align: left;
   white-space: normal;
   overflow: hidden;
