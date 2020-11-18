@@ -10,10 +10,12 @@
     <h1>Best Books!</h1>
   </header>
   <main>
-    <%- include('detail.ejs') %>
+    <%- include('detail.ejs', { book: book }) %>
   </main>
   <a href="pages/index">Return to Your Shelf</a>
   <footer><span></span><span></span><span></span><span></span></footer>
 </body>
 
 </html>
+
+<!-- /layout/head -->

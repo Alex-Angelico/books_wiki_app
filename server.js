@@ -80,11 +80,17 @@ function renderDetails(req, res) {
 
   return client.query(SQL, bookID)
     .then(result => {
-      return res.render('pages/books/detail', { book: result.rows[0] });
+      return res.render('pages/books/:id', { book: result.rows[0] });
     })
     .catch(error => {
       console.error(error);
     })
+}
+
+app.use('*', errorHandling);
+
+function errorHandling(req, res) {
+  res.status(500).send('Something went wrong!');
 }
 
 app.listen(PORT, () => {
