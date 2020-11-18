@@ -1,17 +1,17 @@
 'use strict'
 
+require('dotenv').config();
+
 const express = require('express');
 const pg = require('pg');
 const app = express();
 const cors = require('cors');
 const superagent = require('superagent');
-require('dotenv').config();
-const PORT = process.env.PORT || 3333;
+const PORT = process.env.PORT;
 console.log(process.env.DATABASE_URL);
 const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', console.error);
 client.connect();
-
 
 app.use(express.static('./public'));
 app.use(cors());
@@ -20,35 +20,20 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 app.get('/', renderHomePage);
-// app.get('/', renderBookCount);
+app.get('/books/:id', renderDetails);
 app.get('/searches/new', showForm);
 app.post('/searches', createSearch);
 app.post('/shelving', shelveBooks);
 
-
-function renderBookCount(SQL) {
-  return client.query(SQL)
-  .then(count => {
-    console.log(count.rowCount)
-    res.render('pages/index', { booknumber: count.rowCount})
-  })
-  .catch(err => console.error(err));
-
-}
 function renderHomePage(req, res) {
   let SQL = 'SELECT * FROM books;';
-  let bookCount = 'SELECT LAST_VALUE (id) OVER (RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) FROM books;';
-  renderBookCount(bookCount);
-  
+  // let bookCount = 'SELECT LAST_VALUE (id) OVER (RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) FROM books;';
+
+
   return client.query(SQL)
     .then(results => res.render('pages/index', { bookshelf: results.rows }))
     .catch(err => console.error(err));
 }
-
-
-  
-
-
 
 function showForm(req, res) {
   res.render('pages/searches/new');
@@ -88,8 +73,8 @@ function shelveBooks(req, res) {
   return client.query(SQL, values)
     .then(res.redirect('/'))
     .catch(error => console.error(error));
-}    
+}
 
-  app.listen(PORT, () => {
-    console.log(`server up: ${PORT}`);
-  });
+app.listen(PORT, () => {
+  console.log(`server up: ${PORT}`);
+});
