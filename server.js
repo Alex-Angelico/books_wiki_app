@@ -34,6 +34,7 @@ function createSearch(req, res) {
 
   superagent.get(url)
     .then(data => {
+      console.log(data.body.items.volumeInfo);
       return data.body.items.map(book => { return new Book(book.volumeInfo); });
     })
     .then(results => {
@@ -51,6 +52,12 @@ function Book(googleBook) {
   this.title = googleBook.title || 'No title found';
   this.authors = googleBook.authors || 'No author found';
   this.description = googleBook.description || 'No description found';
+  this.isbn = googleBook.isbn || 'No ISBN found';
+  // console.log(typeof this.thumbnail);
+  // console.log(typeof this.title);
+  // console.log(typeof this.authors);
+  // console.log(typeof this.description);
+  // console.log(typeof this.isbn);
 }
 
 app.listen(PORT, () => {
