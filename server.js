@@ -8,7 +8,6 @@ const app = express();
 const cors = require('cors');
 const superagent = require('superagent');
 const PORT = process.env.PORT;
-console.log(process.env.DATABASE_URL);
 const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', console.error);
 client.connect();
@@ -20,10 +19,10 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 app.get('/', renderHomePage);
-app.get('/books/:id', renderDetails);
+app.get('/pages/books/:id', renderDetails);
 app.get('/searches/new', showForm);
 app.post('/searches', createSearch);
-app.post('/shelving', shelveBooks);
+app.post('/books', shelveBooks);
 
 function renderHomePage(req, res) {
   let SQL = 'SELECT * FROM books;';
@@ -73,6 +72,19 @@ function shelveBooks(req, res) {
   return client.query(SQL, values)
     .then(res.redirect('/'))
     .catch(error => console.error(error));
+}
+
+function renderDetails(req, res) {
+  let SQL = 'SELECT * FROM books WHERE id=$1;';
+  let bookID = [req.params.id];
+
+  return client.query(SQL, bookID)
+    .then(result => {
+      return res.render('pages/books/detail', { book: result.rows[0] });
+    })
+    .catch(error => {
+      console.error(error);
+    })
 }
 
 app.listen(PORT, () => {
