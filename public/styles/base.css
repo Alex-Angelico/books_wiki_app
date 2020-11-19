@@ -169,3 +169,17 @@ li p {
   align-items: center;
   align-content: space-between;
 }
+
+/* .updateBook {
+  visibility: hidden;
+} */
+
+section {
+  width: 45vw;
+  height: 450px;
+  display: block;
+  background-color: lightgray;
+  margin: 25px 0px;
+  border-radius: 3px;
+  box-shadow: 0 0 5px black;
+}
