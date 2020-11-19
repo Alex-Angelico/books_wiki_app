@@ -190,16 +190,16 @@ Estimate of time needed to complete: 4 hours
 
 Start time: 1545
 
-Finish time: _____
+Finish time: 2050
 
-Actual time needed to complete: _____
+Actual time needed to complete: 5 hours
 
 Number and name of feature: Deletion
 
 Estimate of time needed to complete: 3 hours
 
-Start time: _____
+Start time: 2055
 
-Finish time: _____
+Finish time: 2145
 
-Actual time needed to complete: _____
+Actual time needed to complete: 1 hour
