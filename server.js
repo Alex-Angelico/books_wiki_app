@@ -7,11 +7,12 @@ const pg = require('pg');
 const app = express();
 const cors = require('cors');
 const superagent = require('superagent');
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3333;
 const client = new pg.Client(process.env.DATABASE_URL);
 const methodOverride = require('method-override');
 client.on('error', console.error);
 client.connect();
+
 
 app.use(express.static('./public'));
 app.use(cors());
@@ -25,13 +26,11 @@ app.get('/pages/books/:id', renderDetails);
 app.get('/searches/new', showForm);
 app.post('/searches', createSearch);
 app.post('/books', shelveBooks);
-// app.put('/pages/books/:id', renderEditing);
 app.put('/pages/update/:id', renderEditing);
+app.delete('/pages/books/:id', deleteBook);
 
 function renderHomePage(req, res) {
   let SQL = 'SELECT * FROM books;';
-  // let bookCount = 'SELECT LAST_VALUE (id) OVER (RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) FROM books;';
-
 
   return client.query(SQL)
     .then(results => res.render('pages/index', { bookshelf: results.rows }))
@@ -95,9 +94,16 @@ function renderEditing(req, res) {
   let { thumbnail, title, authors, description, identifier } = req.body;
   let SQL = `UPDATE books SET thumbnail=$1, title=$2, authors=$3, description=$4, identifier=$5 WHERE id=$6`;
   let values = [thumbnail, title, authors, description, identifier, req.params.id];
-  console.log(values);
   client.query(SQL, values)
     .then(res.redirect('/pages/books/:id'))
+    .catch(err => console.error(err));
+}
+
+function deleteBook(req, res) {
+  let SQL = `DELETE FROM books WHERE id=${req.params.id};`;
+
+  client.query(SQL)
+    .then(res.redirect('/'))
     .catch(err => console.error(err));
 }
 
@@ -105,7 +111,6 @@ app.use('*', errorHandling);
 
 function errorHandling(req, res) {
   res.status(500).send('Something went wrong!');
-  console.log('SJDAIDajidnjiasikaskidnjasjadk');
 }
 
 app.listen(PORT, () => {
