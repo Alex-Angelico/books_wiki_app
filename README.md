@@ -1,6 +1,6 @@
 # Books.Wiki
 
-**Authors**: Alex Angelico, Jordan Ostlund
+**Authors**: Alex Angelico, Jordan Kidwell
 
 ## Overview
 
