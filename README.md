@@ -120,4 +120,86 @@ Finish time: 0335
 
 Actual time needed to complete: 0.167 hour
 
+### Lab 12
 
+#### Feature 7
+
+Number and name of feature: Homepage Display
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 1545
+
+Finish time: 2200
+
+Actual time needed to complete: 6.25 hours
+
+#### Feature 8
+
+Number and name of feature: Detail View
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 1700
+
+Finish time: 0130
+
+Actual time needed to complete: 8.5 hours
+
+#### Feature 9
+
+Number and name of feature: Books Database Integration
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 1630
+
+Finish time: 2200
+
+Actual time needed to complete: 5.5 hours
+
+#### Feature 10
+
+Number and name of feature: Small Features
+
+Estimate of time needed to complete: 1.5 hours
+
+Start time: 2300
+
+Finish time: 0130
+
+Actual time needed to complete: 2.5 hours
+
+#### Feature 11
+
+Number and name of feature: CSS
+
+Estimate of time needed to complete: 2 hours
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
+### Lab 13
+
+Number and name of feature: Details Updating
+
+Estimate of time needed to complete: 4 hours
+
+Start time: 1545
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
+Number and name of feature: Deletion
+
+Estimate of time needed to complete: 3 hours
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____

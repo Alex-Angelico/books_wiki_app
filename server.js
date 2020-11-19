@@ -9,12 +9,14 @@ const cors = require('cors');
 const superagent = require('superagent');
 const PORT = process.env.PORT;
 const client = new pg.Client(process.env.DATABASE_URL);
+const methodOverride = require('method-override');
 client.on('error', console.error);
 client.connect();
 
 app.use(express.static('./public'));
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 
 app.set('view engine', 'ejs');
 
@@ -23,6 +25,8 @@ app.get('/pages/books/:id', renderDetails);
 app.get('/searches/new', showForm);
 app.post('/searches', createSearch);
 app.post('/books', shelveBooks);
+// app.put('/pages/books/:id', renderEditing);
+app.put('/pages/update/:id', renderEditing);
 
 function renderHomePage(req, res) {
   let SQL = 'SELECT * FROM books;';
@@ -87,10 +91,21 @@ function renderDetails(req, res) {
     })
 }
 
+function renderEditing(req, res) {
+  let { thumbnail, title, authors, description, identifier } = req.body;
+  let SQL = `UPDATE books SET thumbnail=$1, title=$2, authors=$3, description=$4, identifier=$5 WHERE id=$6`;
+  let values = [thumbnail, title, authors, description, identifier, req.params.id];
+  console.log(values);
+  client.query(SQL, values)
+    .then(res.redirect('/pages/books/:id'))
+    .catch(err => console.error(err));
+}
+
 app.use('*', errorHandling);
 
 function errorHandling(req, res) {
   res.status(500).send('Something went wrong!');
+  console.log('SJDAIDajidnjiasikaskidnjasjadk');
 }
 
 app.listen(PORT, () => {

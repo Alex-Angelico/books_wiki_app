@@ -1,7 +1,15 @@
-<section>
+<section class="detailBox">
   <img src="<%= book.thumbnail %>"></img>
   <h3><%= book.title %></h3>
   <strong>Authors: <%= book.authors %></strong>
   <p>Description: <%= book.description %></p>
   <p>ISBN: <%= book.identifier %></p>
+  <!-- <form class="updateForm" action="/books/edit" method="POST"> -->
+  <form class="updateForm">
+    <input type="hidden" name="book" value="<%= JSON.stringify(book) %>"></input>
+    <button type="submit">Update Details</button>
+    <button type="submit">Delete Book</button>
+  </form>
+  <!-- <script   src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js></script>
+  <script src="../../js/app.js"></script> -->
 </section>
